@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Developer.Models
+
+@inject SignInManager<DeveloperUser> SignInManager
+@inject UserManager<DeveloperUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+    </li>
+    <li>
+        <a href="javascript:$('#logoutForm').submit()">Log off</a>
+    </li>
+}
+else
+{
+    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+}
+<form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm"></form>
