@@ -1,24 +1,35 @@
-﻿// Configure bundling and minification for the project.
-// More info at https://go.microsoft.com/fwlink/?LinkId=808241
-[
+﻿[
   {
-    "outputFileName": "wwwroot/css/site.min.css",
-    // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/site.css"
-    ]
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "wwwroot/lib/font-awesome/css/font-awesome.css",
+      "wwwroot/lib/Ionicons/css/ionicons.css",
+      "wwwroot/lib/flexslider/flexslider.css",
+      "wwwroot/lib/OwlCarousel/owl-carousel/owl.carousel.css",
+      "wwwroot/lib/OwlCarousel/owl-carousel/owl.theme.css",
+      "wwwroot/css/scrolling-nav.css",
+      "wwwroot/css/style.css",
+      "wwwroot/css/responsive.css",
+      "wwwroot/css/headline.css"
+    ],
+    "outputFileName": "wwwroot/css/site.min.css"
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/lib/jquery/dist/jquery.min.js",
+      "wwwroot/lib/flexslider/jquery.flexslider-min.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "wwwroot/lib/scrollreveal/dist/scrollreveal.min.js",
+      "wwwroot/lib/OwlCarousel/owl-carousel/owl.carousel.js",
+      "wwwroot/js/modernizr.js",
+      "wwwroot/js/jquery.easing.min.js",
+      "wwwroot/js/custom.js"
     ],
-    // Optionally specify minification options
     "minify": {
       "enabled": true,
       "renameLocals": true
     },
-    // Optinally generate .map file
+    "outputFileName": "wwwroot/js/site.min.js",
     "sourceMap": false
   }
 ]

@@ -9,7 +9,7 @@ namespace API.Models
 {
     public class APIUser : IdentityUser
     {
-        [InverseProperty(nameof(App.OwnerId))]
-        public virtual List<App> MyApps { get; set; }
+        [InverseProperty(nameof(App.Owner))]
+        public virtual List<App> MyApps { get; set; } = new List<App>();
     }
 }
