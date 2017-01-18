@@ -76,7 +76,7 @@ namespace Developer
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
+            //app.UseFacebookAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -84,5 +84,11 @@ namespace Developer
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+    }
+    public static class Values
+    {
+        public static string ServerAddress { get; set; } = "http://localhost:62631";
+        public static string AppId { get; set; } = "appid";
+        public static string AppSecret { get; set; } = "appsecret";
     }
 }

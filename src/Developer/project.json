@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-API-2a9e9f97-50f5-4bc2-bc28-2b0b25bb53d4",
 
   "dependencies": {
@@ -43,7 +43,10 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "System.Net.Mail": "1.0.0-rtm-00002",
+    "Microsoft.AspNetCore.Authentication.Facebook": "1.0.0",
+    "Microsoft.AspNetCore.Authentication.OAuth": "1.1.0"
   },
 
   "tools": {

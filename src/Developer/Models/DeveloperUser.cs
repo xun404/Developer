@@ -9,7 +9,11 @@ namespace Developer.Models
 {
     public class DeveloperUser : IdentityUser
     {
-        [InverseProperty(nameof(App.Owner))]
+        [InverseProperty(nameof(App.Creater))]
         public virtual List<App> MyApps { get; set; } = new List<App>();
+
+        public virtual string nickname { get; set; }
+        public virtual string sex { get; set; }
+        public virtual string headimgurl { get; set; }
     }
 }
