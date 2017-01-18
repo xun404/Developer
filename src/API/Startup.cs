@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Developer.Data;
-using Developer.Models;
-using Developer.Services;
+using API.Data;
+using API.Models;
+using API.Services;
+using Microsoft.AspNetCore.Identity;
 
-namespace Developer
+namespace API
 {
     public class Startup
     {
@@ -40,11 +41,19 @@ namespace Developer
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<DeveloperDbContext>(options =>
+            services.AddDbContext<APIDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<DeveloperUser, IdentityRole>()
-                .AddEntityFrameworkStores<DeveloperDbContext>()
+            services.AddIdentity<APIUser, IdentityRole>(options =>
+                options.Password = new PasswordOptions
+                {
+                    RequireDigit = false,
+                    RequiredLength = 6,
+                    RequireLowercase = false,
+                    RequireUppercase = false,
+                    RequireNonAlphanumeric = false
+                })
+                .AddEntityFrameworkStores<APIDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
@@ -70,27 +79,17 @@ namespace Developer
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseStaticFiles();
+
             app.UseIdentity();
-            app.UseAiursoftAuthentication(appId: "appid", appSecret: "appSecret");
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-    }
-    public static class Values
-    {
-        public static string ServerAddress { get; } = "http://localhost:62631";
-        public static string AppId { get; private set; } = "appid";
-        public static string AppSecret { get; private set; } = "appsecret";
-        public static IApplicationBuilder UseAiursoftAuthentication(this IApplicationBuilder app, string appId, string appSecret)
-        {
-            AppId = appId;
-            AppSecret = appSecret;
-            return app;
         }
     }
 }

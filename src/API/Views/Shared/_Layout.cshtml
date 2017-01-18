@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/favicon.ico">
+    <title>@ViewData["Title"] - Aiursoft</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet">
+</head>
+<body>
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

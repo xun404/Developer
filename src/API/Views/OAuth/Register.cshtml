@@ -1,0 +1,60 @@
+﻿@model API.Models.OAuthViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="lock-wrapper">
+    <div class="panel lock-box" id="panelinSignin">
+        <div class="center">
+            <img class="img-circle" alt="" src="~/images/user.png">
+        </div>
+        <h4>Register</h4>
+        <p class="text-center">Please login your Aiursoft Account</p>
+        <div class="row">
+            <div class="form-inline">
+                @if (Model != null)
+                {
+                    <form class="form-group col-md-12" asp-controller="OAuth" asp-action="Register" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input asp-for="ToRedirect" type="hidden" />
+                        <input asp-for="State" type="hidden" />
+                        <div class="iconic-input right">
+                            <label class="text-muted">New Aiursoft Account</label>
+                            <input type="email" asp-for="Email" class="form-control" placeholder="Enter Aiursoft Account">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="iconic-input right">
+                            <label class="text-muted">Password</label>
+                            <input class="form-control lock-input" type="password" asp-for="Password" placeholder="Password">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <div class="iconic-input right">
+                            <label class="text-muted">Password</label>
+                            <input class="form-control lock-input" type="password" asp-for="ConfirmPassword" placeholder="Confirm Password">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                        <button class="btn btn-block btn-primary" type="submit">Sign Up</button>
+                    </form>
+                }
+                else
+                {
+                    <div class="col-md-12 alert-danger">
+                        An error occured with oauth system!
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div> Already have an account ? <a asp-controller="OAuth" asp-action="Authorize" asp-route-redirect_uri="@Model?.ToRedirect" asp-route-state="@Model?.State"> <span class="text-primary"> Sign In </span> </a> </div>
+</div>
+
+
+@section Scripts {
+    <environment names="Development">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    </environment>
+}
