@@ -5,19 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using API.Data;
+using AiursoftBase.Models;
 
 namespace API.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
-    public class APIUser : IdentityUser
+    public class APIUser : AiurUserBase
     {
-        public virtual string nickname { get; set; }
-        public virtual string sex { get; set; }
-        public virtual string headimgurl { get; set; }
-
         [InverseProperty(nameof(OAuthPack.User))]
         public virtual List<OAuthPack> Packs { get; set; }
-
 
         public async virtual Task<OAuthPack> GeneratePack(APIDbContext DbContext)
         {

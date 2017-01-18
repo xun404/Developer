@@ -46,7 +46,8 @@
     },
     "System.Net.Mail": "1.0.0-rtm-00002",
     "Microsoft.AspNetCore.Authentication.Facebook": "1.0.0",
-    "Microsoft.AspNetCore.Authentication.OAuth": "1.1.0"
+    "Microsoft.AspNetCore.Authentication.OAuth": "1.1.0",
+    "AiursoftBase": "1.0.0-*"
   },
 
   "tools": {

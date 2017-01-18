@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.Abstractions": "1.0.1",
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.1",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
+    "NETStandard.Library": "1.6.0",
+    "System.Net.Mail": "1.0.0-rtm-00002",
+    "System.Net.Requests": "4.3.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

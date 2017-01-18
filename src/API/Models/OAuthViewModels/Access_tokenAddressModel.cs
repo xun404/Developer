@@ -17,13 +17,4 @@ namespace API.Models.OAuthViewModels
         [Required]
         public virtual string grant_type { get; set; }
     }
-
-    public class Access_tokenViewModel
-    {
-        public virtual string access_token { get; set; }
-        public virtual int expires_in { get; set; }
-        public virtual string refresh_token { get; set; }
-        public virtual string openid { get; set; }
-        public virtual string scope { get; set; }
-    }
 }

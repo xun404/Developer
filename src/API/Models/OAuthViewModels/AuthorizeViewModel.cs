@@ -33,5 +33,6 @@ namespace API.Models.OAuthViewModels
         [Url]
         public string ToRedirect { get; set; }
         public string State { get; set; }
+        public string AppId { get; set; }
     }
 }

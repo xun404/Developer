@@ -11,12 +11,14 @@ namespace API.Models.OAuthViewModels
         [Url]
         public virtual string redirect_uri { get; set; }
         public virtual string state { get; set; }
+        public virtual string appid { get; set; }
     }
     public class RegisterViewModel
     {
         [Url]
         public virtual string ToRedirect { get; set; }
         public virtual string State { get; set; }
+        public virtual string AppId { get; set; }
 
         [Required]
         [EmailAddress]

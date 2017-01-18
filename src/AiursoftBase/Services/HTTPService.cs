@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API.Services
+namespace AiursoftBase.Services
 {
     public class HTTPService
     {

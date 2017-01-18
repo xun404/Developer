@@ -18,6 +18,7 @@
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <input asp-for="ToRedirect" type="hidden" />
                         <input asp-for="State" type="hidden" />
+                        <input asp-for="AppId" type="hidden" />
                         <div class="iconic-input right">
                             <label class="text-muted">Obisoft Account</label>
                             <input type="email" asp-for="Email" class="form-control" placeholder="Enter Aiursoft Account">
@@ -41,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div> Don't have an account ? <a asp-controller="OAuth" asp-action="Register" asp-route-redirect_uri="@Model?.ToRedirect" asp-route-state="@Model?.State"> <span class="text-primary"> Sign Up </span> </a> </div>
+    <div> Don't have an account ? <a asp-controller="OAuth" asp-action="Register" asp-route-redirect_uri="@Model?.ToRedirect" asp-route-state="@Model?.State" asp-route-appid="@Model?.AppId"> <span class="text-primary"> Sign Up </span> </a> </div>
 </div>
 
 @section Scripts {

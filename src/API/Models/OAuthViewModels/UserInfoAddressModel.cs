@@ -11,11 +11,4 @@ namespace API.Models.OAuthViewModels
         public virtual string openid { get; set; }
         public virtual string lang { get; set; }
     }
-    public class UserInfoViewModel
-    {
-        public virtual string openid { get; set; }
-        public virtual string nickname { get; set; }
-        public virtual string sex { get; set; }
-        public virtual string headimgurl { get; set; }
-    }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Developer.Data;
 using Developer.Models;
 using Developer.Services;
+using AiursoftBase;
 
 namespace Developer
 {
@@ -81,16 +82,5 @@ namespace Developer
             });
         }
     }
-    public static class Values
-    {
-        public static string ServerAddress { get; } = "http://localhost:62631";
-        public static string AppId { get; private set; } = "appid";
-        public static string AppSecret { get; private set; } = "appsecret";
-        public static IApplicationBuilder UseAiursoftAuthentication(this IApplicationBuilder app, string appId, string appSecret)
-        {
-            AppId = appId;
-            AppSecret = appSecret;
-            return app;
-        }
-    }
+
 }

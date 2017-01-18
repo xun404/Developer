@@ -44,7 +44,8 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "System.Net.Mail": "1.0.0-rtm-00002"
+    "System.Net.Mail": "1.0.0-rtm-00002",
+    "AiursoftBase": "1.0.0-*"
   },
 
   "tools": {

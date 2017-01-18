@@ -4,16 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using AiursoftBase.Models;
 
 namespace Developer.Models
 {
-    public class DeveloperUser : IdentityUser
+    public class DeveloperUser : AiurUserBase
     {
         [InverseProperty(nameof(App.Creater))]
         public virtual List<App> MyApps { get; set; } = new List<App>();
-
-        public virtual string nickname { get; set; }
-        public virtual string sex { get; set; }
-        public virtual string headimgurl { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li>
-        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @((await UserManager.FindByNameAsync(User.Identity.Name)).nickname)!</a>
     </li>
     <li>
         <a href="javascript:$('#logoutForm').submit()">Log off</a>

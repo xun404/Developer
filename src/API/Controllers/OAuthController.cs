@@ -13,6 +13,8 @@ using System.Text.Encodings.Web;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using AiursoftBase.Services;
+using AiursoftBase.Models;
 
 namespace API.Controllers
 {
@@ -43,11 +45,11 @@ namespace API.Controllers
 
         public async Task<IActionResult> Authorize(AuthorizeAddressModel model)
         {
-            if (User.Identity.IsAuthenticated)
+            var cuser = await GetCurrentUserAsync();
+            if (cuser != null)
             {
-                var cuser = await GetCurrentUserAsync();
                 var pack = await cuser.GeneratePack(_dbContext);
-                var url = AddCode(model.redirect_uri, pack.Code,model.state);
+                var url = AddCode(model.redirect_uri, pack.Code, model.state);
                 return Redirect(url);
             }
             if (ModelState.IsValid)
@@ -55,21 +57,23 @@ namespace API.Controllers
                 var _viewModel = new AuthorizeViewModel();
                 _viewModel.ToRedirect = model.redirect_uri;
                 _viewModel.State = model.state;
+                _viewModel.AppId = model.appid;
                 return View(_viewModel);
             }
             return View();
         }
+        //http://localhost:62631/oauth/authorize?appid=appid&redirect_uri=http%3A%2F%2Flocalhost%3A55771%2FAuth%2FAuthResult&response_type=code&scope=snsapi_base&state=http%3A%2F%2Flocalhost%3A55771%2FAuth%2FGoAuth#aiursoft_redirect
         [HttpPost]
         public async Task<IActionResult> Authorize(AuthorizeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     var cuser = await GetCurrentUserAsync(model.Email);
                     var pack = await cuser.GeneratePack(_dbContext);
-                    var url = AddCode(model.ToRedirect, pack.Code,model.State);
+                    var url = AddCode(model.ToRedirect, pack.Code, model.State);
                     return Redirect(url);
                 }
                 else if (result.RequiresTwoFactor)
@@ -96,6 +100,7 @@ namespace API.Controllers
                 var _viewModel = new RegisterViewModel();
                 _viewModel.ToRedirect = model.redirect_uri;
                 _viewModel.State = model.state;
+                _viewModel.AppId = model.appid;
                 return View(_viewModel);
             }
             return View();
@@ -106,14 +111,14 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new APIUser { UserName = model.Email, Email = model.Email };
+                var user = new APIUser { UserName = model.Email, Email = model.Email, nickname = model.Email.Split('@')[0] };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: true);
                     var cuser = await GetCurrentUserAsync(model.Email);
                     var pack = await cuser.GeneratePack(_dbContext);
-                    var url = AddCode(model.ToRedirect, pack.Code,model.State);
+                    var url = AddCode(model.ToRedirect, pack.Code, model.State);
                     return Redirect(url);
                 }
                 AddErrors(result);
@@ -148,7 +153,7 @@ namespace API.Controllers
             _dbContext.AccessToken.Add(_newAccessToken);
             await _dbContext.SaveChangesAsync();
 
-            var _model = new Access_tokenViewModel
+            var _model = new AuthAccessToken
             {
                 access_token = _newAccessToken.Value,
                 openid = _targetPack.UserId,
