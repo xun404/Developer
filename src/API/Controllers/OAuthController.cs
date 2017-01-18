@@ -37,7 +37,7 @@ namespace API.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            _logger = loggerFactory.CreateLogger<OAuthController>();
             _dbContext = _context;
         }
 

@@ -42,7 +42,7 @@ namespace Developer.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            _logger = loggerFactory.CreateLogger<AuthController>();
             _dbContext = _context;
         }
 

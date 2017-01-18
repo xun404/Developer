@@ -13,11 +13,8 @@ namespace API.Models.OAuthViewModels
         [Required]
         [Url]
         public string redirect_uri { get; set; }
-        [Required]
         public string response_type { get; set; }
-        [Required]
         public string scope { get; set; }
-        [Required]
         public string state { get; set; }
     }
 
