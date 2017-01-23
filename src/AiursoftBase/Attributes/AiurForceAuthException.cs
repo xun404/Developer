@@ -19,12 +19,13 @@ namespace AiursoftBase.Attributes
             switch (context.Exception.GetType().Name)
             {
                 case nameof(NotAiurSignedInException):
-                    var _iController = (context.Exception as NotAiurSignedInException).controller;
-                    var request = _iController.HttpContext.Request;
-                    var hostpath = $"{request.Scheme}://{request.Host}{request.Path}";
+                    var exp = context.Exception as NotAiurSignedInException;
+                    var _controller = exp.controller;
+                    var request = _controller.HttpContext.Request;
+
                     var authpath = $"{request.Scheme}://{request.Host}/Auth/AuthResult";
-                    var url = OAuthService.GenerateAuthUrl(authpath, hostpath);
-                    _iController.HttpContext.Response.Redirect(url);
+                    var url = OAuthService.GenerateAuthUrl(Destination: authpath, State: exp.SignInRedirectPath);
+                    _controller.HttpContext.Response.Redirect(url);
                     break;
                 default:
                     break;

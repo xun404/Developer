@@ -58,6 +58,8 @@ namespace API.Controllers
                 _viewModel.ToRedirect = model.redirect_uri;
                 _viewModel.State = model.state;
                 _viewModel.AppId = model.appid;
+                _viewModel.Scope = model.scope;
+                _viewModel.ResponseType = model.response_type;
                 return View(_viewModel);
             }
             return View();
@@ -68,7 +70,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     var cuser = await GetCurrentUserAsync(model.Email);
@@ -93,7 +95,7 @@ namespace API.Controllers
             return View(model);
         }
 
-        public IActionResult Register(RegisterAddressModel model)
+        public IActionResult Register(AuthorizeAddressModel model)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +103,8 @@ namespace API.Controllers
                 _viewModel.ToRedirect = model.redirect_uri;
                 _viewModel.State = model.state;
                 _viewModel.AppId = model.appid;
+                _viewModel.Scope = model.scope;
+                _viewModel.ResponseType = model.response_type;
                 return View(_viewModel);
             }
             return View();
@@ -184,7 +188,8 @@ namespace API.Controllers
                 openid = _user.Id,
                 headimgurl = _user.headimgurl,
                 nickname = _user.nickname,
-                sex = _user.sex
+                sex = _user.sex,
+                preferedLanguage = _user.preferedLanguage
             };
             return Json(_viewModel);
         }

@@ -73,6 +73,8 @@ namespace API.Data.Migrations
 
                     b.Property<string>("nickname");
 
+                    b.Property<string>("preferedLanguage");
+
                     b.Property<string>("sex");
 
                     b.HasKey("Id");

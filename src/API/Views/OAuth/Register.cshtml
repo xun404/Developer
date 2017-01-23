@@ -18,6 +18,8 @@
                         <input asp-for="ToRedirect" type="hidden" />
                         <input asp-for="State" type="hidden" />
                         <input asp-for="AppId" type="hidden" />
+                        <input asp-for="Scope" type="hidden" />
+                        <input asp-for="ResponseType" type="hidden" />
                         <div class="iconic-input right">
                             <label class="text-muted">New Aiursoft Account</label>
                             <input type="email" asp-for="Email" class="form-control" placeholder="Enter Aiursoft Account">
@@ -45,7 +47,12 @@
             </div>
         </div>
     </div>
-    <div> Already have an account ? <a asp-controller="OAuth" asp-action="Authorize" asp-route-redirect_uri="@Model?.ToRedirect" asp-route-state="@Model?.State" asp-route-appid="@Model?.AppId"> <span class="text-primary"> Sign In </span> </a> </div>
+    <div> Already have an account ? <a asp-controller="OAuth" asp-action="Authorize"                                      
+                                       asp-route-redirect_uri="@Model?.ToRedirect" 
+                                       asp-route-state="@Model?.State" 
+                                       asp-route-appid="@Model?.AppId" 
+                                       asp-route-scope="@Model?.Scope" 
+                                       asp-route-response_type="@Model?.ResponseType"> <span class="text-primary"> Sign In </span> </a> </div>
 </div>
 
 

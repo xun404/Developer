@@ -9,9 +9,11 @@ namespace AiursoftBase.Exceptions
     public class NotAiurSignedInException : Exception
     {
         public Controller controller { get; }
-        public NotAiurSignedInException(Controller controller)
+        public string SignInRedirectPath { get; }
+        public NotAiurSignedInException(Controller controller,string SuccessfulRedirectPath)
         {
             this.controller = controller;
+            this.SignInRedirectPath = SuccessfulRedirectPath;
         }
     }
 }

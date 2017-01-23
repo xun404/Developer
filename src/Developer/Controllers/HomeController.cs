@@ -8,9 +8,11 @@ using Developer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Developer.Models;
+using AiursoftBase.Attributes;
 
 namespace Developer.Controllers
 {
+    [AiurForceAuthException]
     public class HomeController : Controller
     {
         public UserManager<DeveloperUser> _userManager { get; protected set; }
@@ -35,7 +37,13 @@ namespace Developer.Controllers
             _logger = loggerFactory.CreateLogger<HomeController>();
             _dbContext = _context;
         }
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Doc()
         {
             return View();
         }

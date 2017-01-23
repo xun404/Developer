@@ -8,9 +8,10 @@ using Developer.Data;
 namespace Developer.Data.Migrations
 {
     [DbContext(typeof(DeveloperDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170123094806_CreatePreferedLanguage")]
+    partial class CreatePreferedLanguage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

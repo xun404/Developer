@@ -27,7 +27,6 @@ namespace Developer
 
             if (env.IsDevelopment())
             {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
 
@@ -37,12 +36,10 @@ namespace Developer
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddDbContext<DeveloperDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("AiursoftDeveloperDbConnection")));
 
             services.AddIdentity<DeveloperUser, IdentityRole>()
                 .AddEntityFrameworkStores<DeveloperDbContext>()
@@ -50,12 +47,10 @@ namespace Developer
 
             services.AddMvc();
 
-            // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

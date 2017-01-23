@@ -8,15 +8,27 @@ using AiursoftBase.Exceptions;
 
 namespace AiursoftBase.Attributes
 {
+    /// <summary>
+    /// Request the signed in token or throw a NotAiurSignedInException 
+    /// </summary>
     public class AiurForceAuth : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             base.OnActionExecuting(context);
-            var _iController = context.Controller as Controller;
-            if (!_iController.User.Identity.IsAuthenticated)
+            var _controller = context.Controller as Controller;
+            var _queryReturnUrl = _controller.HttpContext.Request.Query["returnurl"];
+
+            string _stateUrl = string.Empty;
+
+            if (!string.IsNullOrEmpty(_queryReturnUrl))
+                _stateUrl = _queryReturnUrl;
+            else
+                _stateUrl = $"{_controller.Request.Path}";
+
+            if (!_controller.User.Identity.IsAuthenticated)
             {
-                throw new NotAiurSignedInException(_iController);
+                throw new NotAiurSignedInException(_controller, _stateUrl);
             }
         }
     }

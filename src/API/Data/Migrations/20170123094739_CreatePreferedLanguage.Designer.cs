@@ -3,43 +3,37 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Developer.Data;
+using API.Data;
 
-namespace Developer.Data.Migrations
+namespace API.Data.Migrations
 {
-    [DbContext(typeof(DeveloperDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(APIDbContext))]
+    [Migration("20170123094739_CreatePreferedLanguage")]
+    partial class CreatePreferedLanguage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Developer.Models.App", b =>
+            modelBuilder.Entity("API.Models.AccessToken", b =>
                 {
-                    b.Property<string>("AppId");
+                    b.Property<int>("AccessTokenId")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AppCategory");
+                    b.Property<int>("PackId");
 
-                    b.Property<DateTime>("AppCreateTime");
+                    b.Property<string>("Value");
 
-                    b.Property<string>("AppName");
+                    b.HasKey("AccessTokenId");
 
-                    b.Property<int>("AppPlatform");
+                    b.HasIndex("PackId");
 
-                    b.Property<string>("AppSecret");
-
-                    b.Property<string>("CreaterId");
-
-                    b.HasKey("AppId");
-
-                    b.HasIndex("CreaterId");
-
-                    b.ToTable("Apps");
+                    b.ToTable("AccessToken");
                 });
 
-            modelBuilder.Entity("Developer.Models.DeveloperUser", b =>
+            modelBuilder.Entity("API.Models.APIUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -94,6 +88,22 @@ namespace Developer.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("API.Models.OAuthPack", b =>
+                {
+                    b.Property<int>("OAuthPackId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("OAuthPackId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OAuthPack");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -203,11 +213,19 @@ namespace Developer.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Developer.Models.App", b =>
+            modelBuilder.Entity("API.Models.AccessToken", b =>
                 {
-                    b.HasOne("Developer.Models.DeveloperUser", "Creater")
-                        .WithMany("MyApps")
-                        .HasForeignKey("CreaterId");
+                    b.HasOne("API.Models.OAuthPack", "OAuthPack")
+                        .WithMany("AccessTokens")
+                        .HasForeignKey("PackId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("API.Models.OAuthPack", b =>
+                {
+                    b.HasOne("API.Models.APIUser", "User")
+                        .WithMany("Packs")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -220,7 +238,7 @@ namespace Developer.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Developer.Models.DeveloperUser")
+                    b.HasOne("API.Models.APIUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -228,7 +246,7 @@ namespace Developer.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Developer.Models.DeveloperUser")
+                    b.HasOne("API.Models.APIUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -241,7 +259,7 @@ namespace Developer.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Developer.Models.DeveloperUser")
+                    b.HasOne("API.Models.APIUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -19,8 +19,10 @@
                         <input asp-for="ToRedirect" type="hidden" />
                         <input asp-for="State" type="hidden" />
                         <input asp-for="AppId" type="hidden" />
+                        <input asp-for="Scope" type="hidden" />
+                        <input asp-for="ResponseType" type="hidden" />
                         <div class="iconic-input right">
-                            <label class="text-muted">Obisoft Account</label>
+                            <label class="text-muted">Aiursoft Account</label>
                             <input type="email" asp-for="Email" class="form-control" placeholder="Enter Aiursoft Account">
                             <i class="fa fa-envelope"></i>
                         </div>
@@ -29,8 +31,15 @@
                             <input class="form-control lock-input" type="password" asp-for="Password" placeholder="Password">
                             <i class="fa fa-lock"></i>
                         </div>
-                        <div class="registration"> Forgot password ?<a href="#/pages/forgot-password"> <span class="text-primary"> Click here </span> </a> </div>
+                        <div class="square-blue pull-left pv-15">
+                            <p><strong>Remember me</strong></p>
+                            <label class="switch switch-info">
+                                <input name="rememberme" asp-for="RememberMe" type="checkbox" checked="checked">
+                                <i></i>
+                            </label>
+                        </div>
                         <button class="btn btn-block btn-primary" type="submit">Sign In</button>
+                        <div class="registration"> Forgot password ?<a href="#/pages/forgot-password"> <span class="text-primary"> Click here </span> </a> </div>
                     </form>
                 }
                 else
@@ -42,7 +51,13 @@
             </div>
         </div>
     </div>
-    <div> Don't have an account ? <a asp-controller="OAuth" asp-action="Register" asp-route-redirect_uri="@Model?.ToRedirect" asp-route-state="@Model?.State" asp-route-appid="@Model?.AppId"> <span class="text-primary"> Sign Up </span> </a> </div>
+    <div> Don't have an account ? <a asp-controller="OAuth" 
+                                     asp-action="Register" 
+                                     asp-route-redirect_uri="@Model?.ToRedirect" 
+                                     asp-route-state="@Model?.State" 
+                                     asp-route-appid="@Model?.AppId" 
+                                     asp-route-scope="@Model?.Scope" 
+                                     asp-route-response_type="@Model?.ResponseType"> <span class="text-primary"> Sign Up </span> </a> </div>
 </div>
 
 @section Scripts {

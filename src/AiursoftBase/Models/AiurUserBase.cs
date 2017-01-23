@@ -11,5 +11,6 @@ namespace AiursoftBase.Models
         public virtual string nickname { get; set; }
         public virtual string sex { get; set; }
         public virtual string headimgurl { get; set; }
+        public virtual string preferedLanguage { get; set; } = "UnSet";
     }
 }

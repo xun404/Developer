@@ -48,24 +48,24 @@ namespace Developer.Controllers
             _dbContext = _context;
         }
 
-
         [AiurForceAuth]
         public IActionResult GoAuth()
         {
             return Redirect("/");
         }
 
+
         public async Task<IActionResult> AuthResult()
         {
-            var _iController = this;
-            var code = _iController.HttpContext.Request.Query["code"];
-            var state = _iController.HttpContext.Request.Query["state"];
-            if (!_iController.User.Identity.IsAuthenticated && !string.IsNullOrEmpty(code))
+            var _controller = this;
+            var code = _controller.HttpContext.Request.Query["code"];
+            var state = _controller.HttpContext.Request.Query["state"];
+            if (!_controller.User.Identity.IsAuthenticated && !string.IsNullOrEmpty(code))
             {
                 var _accessToken = await OAuthService.AuthCodeToAccessTokenAsync(code);
                 var _userinfo = await OAuthService.AccessTokenToUserInfo(AccessToken: _accessToken.access_token, openid: _accessToken.openid);
 
-                var current = await _iController._userManager.FindByIdAsync(_userinfo.openid);
+                var current = await _controller._userManager.FindByIdAsync(_userinfo.openid);
                 if (current == null)
                 {
                     current = new DeveloperUser
@@ -74,18 +74,20 @@ namespace Developer.Controllers
                         nickname = _userinfo.nickname,
                         sex = _userinfo.sex,
                         headimgurl = _userinfo.headimgurl,
-                        UserName = _userinfo.openid
+                        UserName = _userinfo.openid,
+                        preferedLanguage = _userinfo.preferedLanguage
                     };
-                    var result = await _iController._userManager.CreateAsync(current);
+                    var result = await _controller._userManager.CreateAsync(current);
                 }
                 else
                 {
                     current.nickname = _userinfo.nickname;
                     current.sex = _userinfo.sex;
                     current.headimgurl = _userinfo.headimgurl;
-                    await _iController._userManager.UpdateAsync(current);
+                    current.preferedLanguage = _userinfo.preferedLanguage;
+                    await _controller._userManager.UpdateAsync(current);
                 }
-                await _iController._signInManager.SignInAsync(current, true);
+                await _controller._signInManager.SignInAsync(current, true);
             }
             return Redirect(state);
         }

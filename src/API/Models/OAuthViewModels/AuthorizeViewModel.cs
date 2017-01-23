@@ -13,9 +13,9 @@ namespace API.Models.OAuthViewModels
         [Required]
         [Url]
         public string redirect_uri { get; set; }
-        public string response_type { get; set; }
-        public string scope { get; set; }
         public string state { get; set; }
+        public string scope { get; set; }
+        public string response_type { get; set; }
     }
 
     public class AuthorizeViewModel
@@ -32,7 +32,11 @@ namespace API.Models.OAuthViewModels
         [Required]
         [Url]
         public string ToRedirect { get; set; }
+
+        public bool RememberMe { get; set; }
         public string State { get; set; }
         public string AppId { get; set; }
+        public string ResponseType { get; set; }
+        public string Scope { get; set; }
     }
 }
