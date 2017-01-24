@@ -41,6 +41,7 @@ namespace API.Controllers
         
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home";
             return View();
         }
 

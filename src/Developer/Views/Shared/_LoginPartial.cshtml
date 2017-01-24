@@ -6,12 +6,19 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li>
-        <a asp-area="" asp-controller="Apps" asp-action="Index">Hello @((await UserManager.FindByNameAsync(User.Identity.Name)).nickname)!</a>
+    <li class="dropdown">
+        <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="" data-toggle="dropdown">Hello @((await UserManager.FindByNameAsync(User.Identity.Name)).nickname)!<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">Settings</li>
+            <li><a asp-controller="Apps" asp-action="Index">Dashboard</a></li>
+            <li><a href="javascript:void(0)">Account Settings</a></li>
+            <li class="dropdown-header">Account</li>
+            <li><a href="javascript:$('#logoutForm').submit()">Log out</a></li>
+        </ul>
     </li>
+    <form class="hidden" asp-controller="Home" asp-action="LogOff" method="post" id="logoutForm"></form>
 }
 else
 {
-    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
     <li><a asp-area="" asp-controller="Auth" asp-action="GoAuth" asp-route-returnurl="@Context.Request.Path">Log in</a></li>
 }

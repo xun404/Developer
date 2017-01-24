@@ -1062,3 +1062,9 @@ h2 {
         background-color: #fff;
         color: #353E47;
     }
+
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: transparent
+}
