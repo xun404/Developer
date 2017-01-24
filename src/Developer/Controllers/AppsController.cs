@@ -38,24 +38,11 @@ namespace API.Controllers
             _logger = loggerFactory.CreateLogger<AppsController>();
             _dbContext = _context;
         }
-
-        [AllowAnonymous]
-        public async Task<IActionResult> IsValidateApp(IsValidateAppAddressModel model)
+        
+        public IActionResult Index()
         {
-            if (!ModelState.IsValid)
-            {
-                return Json(new { message = "Wrong input.", code = -10 });
-            }
-            var _target = await _dbContext.Apps.SingleOrDefaultAsync(t => t.AppId == model.AppId);
-            if (_target == null)
-            {
-                return Json(new { message = "Not found.", code = -4 });
-            }
-            if (_target.AppSecret != model.AppSecret)
-            {
-                return Json(new { message = "Wrong secret.", code = -1 });
-            }
-            return Json(new { message = "Currect", code = 0 });
+            return View();
         }
+
     }
 }

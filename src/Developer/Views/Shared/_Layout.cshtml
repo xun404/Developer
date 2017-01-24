@@ -58,15 +58,12 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Home" asp-action="About">About</a>
-                    </li>
-                    <li>
-                        <a asp-controller="Home" asp-action="Contact">Contact</a>
-                    </li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="About">Products</a></li>
+                    <li><a asp-controller="Home" asp-action="Docs">Docs</a></li>
+                    <li><a asp-controller="Home" asp-action="About">Tools &amp; Support</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">News</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">Success Stories</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @await Html.PartialAsync("_LoginPartial")

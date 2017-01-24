@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Developer.Data;
-using Developer.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using Developer.Models;
-using AiursoftBase.Attributes;
+using Developer.Services;
+using Microsoft.Extensions.Logging;
+using Developer.Data;
+using API.Models.AppsViewModels;
+using Microsoft.EntityFrameworkCore;
 
-namespace Developer.Controllers
+namespace API.Controllers
 {
-    [AiurForceAuthException]
-    public class HomeController : Controller
+    public class ApiController : Controller
     {
         public UserManager<DeveloperUser> _userManager { get; protected set; }
         public SignInManager<DeveloperUser> _signInManager { get; protected set; }
@@ -22,7 +22,7 @@ namespace Developer.Controllers
         public ILogger _logger { get; protected set; }
         public DeveloperDbContext _dbContext { get; protected set; }
 
-        public HomeController(
+        public ApiController(
             UserManager<DeveloperUser> userManager,
             SignInManager<DeveloperUser> signInManager,
             IEmailSender emailSender,
@@ -34,27 +34,26 @@ namespace Developer.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<HomeController>();
+            _logger = loggerFactory.CreateLogger<ApiController>();
             _dbContext = _context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IsValidateApp(IsValidateAppAddressModel model)
         {
-            return View();
-        }
-
-        public IActionResult Docs()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOff()
-        {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            if (!ModelState.IsValid)
+            {
+                return Json(new { message = "Wrong input.", code = -10 });
+            }
+            var _target = await _dbContext.Apps.SingleOrDefaultAsync(t => t.AppId == model.AppId);
+            if (_target == null)
+            {
+                return Json(new { message = "Not found.", code = -4 });
+            }
+            if (_target.AppSecret != model.AppSecret)
+            {
+                return Json(new { message = "Wrong secret.", code = -1 });
+            }
+            return Json(new { message = "Currect", code = 0 });
         }
     }
 }

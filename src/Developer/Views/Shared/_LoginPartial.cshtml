@@ -7,7 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li>
-        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @((await UserManager.FindByNameAsync(User.Identity.Name)).nickname)!</a>
+        <a asp-area="" asp-controller="Apps" asp-action="Index">Hello @((await UserManager.FindByNameAsync(User.Identity.Name)).nickname)!</a>
     </li>
 }
 else
