@@ -76,6 +76,8 @@ namespace Developer.Data.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
+                    b.Property<DateTime>("accountCreateTime");
+
                     b.Property<string>("headimgurl");
 
                     b.Property<string>("nickname");

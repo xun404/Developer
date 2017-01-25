@@ -1,0 +1,60 @@
+﻿@model Developer.Models.AppsViewModels.AllAppsViewModel
+@{
+    Layout = "_AppLayout";
+}
+<div class="main-content">
+    <div class="prj-header margin-bottom-30">
+        <a href="#" class="btn btn-info btn-submit-prj btn-sm">Create App</a>
+        <div class="result-count">130 Apps</div>
+        <ul class="filters">
+            <li><a class="active" href="#">All</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">API Wrappers</a></li>
+            <li><a href="#">Apps</a></li>
+            <li><a href="#">Others</a></li>
+        </ul>
+    </div>
+
+    <div class="prj-list row">
+        @for (int i = 0; i < 9; i++)
+        {
+            <div class="col-lg-4 col-md-6 col-xs-12 margin-bottom-30">
+                <a href="#" class="prj-item">
+                    <div class="top-project-section">
+                        <div class="project-icon">
+                            <img src="~/images/logo-1.png" alt="">
+                        </div>
+                        <h3>Bold Meida</h3>
+                        <div class="meta">
+                            <p class="author">
+                                by <span>Bold Meida</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bottom-project-section">
+                        <div class="meta">
+                            <div class="points">
+                                <i class="fa fa-heart-o"></i> 407
+                            </div>
+                            <div class="views">
+                                <i class="fa fa-eye"></i> 40.6k
+                            </div>
+                            <span class="feedable-time timeago">2 years ago</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="text-center">
+        <a href="#" class="btn btn-success">Load More Results</a>
+    </div>
+    <footer class="footer">
+        <ul class="list-inline">
+            <li>2016 © NinjaAdmin.</li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+    </footer>
+</div>

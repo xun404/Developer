@@ -1,19 +1,16 @@
-﻿using API.Models.AppsViewModels;
-using Developer.Data;
+﻿using Developer.Data;
 using Developer.Models;
 using Developer.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Developer.Models.AppsViewModels;
+using AiursoftBase.Attributes;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
+    [AiurForceAuthException]
     public class AppsController : Controller
     {
         private readonly UserManager<DeveloperUser> _userManager;
@@ -38,12 +35,26 @@ namespace API.Controllers
             _logger = loggerFactory.CreateLogger<AppsController>();
             _dbContext = _context;
         }
-
-        public IActionResult Index()
+        [AiurForceAuth]
+        public async Task<IActionResult> Index()
         {
             ViewData["Title"] = "Home";
-            return View();
+            var _cuser = await GetCurrentUserAsync();
+            var _model = new IndexViewModel(_cuser.nickname);
+            return View(_model);
+        }
+        [AiurForceAuth]
+        public async Task<IActionResult> AllApps()
+        {
+            ViewData["Title"] = "All Apps";
+            var _cuser = await GetCurrentUserAsync();
+            var _model = new AllAppsViewModel(_cuser.nickname);
+            return View(_model);
         }
 
+        private async Task<DeveloperUser> GetCurrentUserAsync()
+        {
+            return await _userManager.GetUserAsync(HttpContext.User);
+        }
     }
 }

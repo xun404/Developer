@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Models.AppsViewModels
+namespace Developer.Models.AppsViewModels
 {
     public class IsValidateAppAddressModel
     {

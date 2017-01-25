@@ -1,23 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Developer.Models;
-using Developer.Services;
-using Microsoft.Extensions.Logging;
 using Developer.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
-using System.Net;
 using AiursoftBase.Services;
-using AiursoftBase.Models;
 using AiursoftBase.Attributes;
 
 namespace Developer.Controllers
@@ -66,7 +52,8 @@ namespace Developer.Controllers
                         sex = _userinfo.sex,
                         headimgurl = _userinfo.headimgurl,
                         UserName = _userinfo.openid,
-                        preferedLanguage = _userinfo.preferedLanguage
+                        preferedLanguage = _userinfo.preferedLanguage,
+                        accountCreateTime = _userinfo.accountCreateTime
                     };
                     var result = await _controller._userManager.CreateAsync(current);
                 }
@@ -76,6 +63,7 @@ namespace Developer.Controllers
                     current.sex = _userinfo.sex;
                     current.headimgurl = _userinfo.headimgurl;
                     current.preferedLanguage = _userinfo.preferedLanguage;
+                    current.accountCreateTime = _userinfo.accountCreateTime;
                     await _controller._userManager.UpdateAsync(current);
                 }
                 await _controller._signInManager.SignInAsync(current, true);

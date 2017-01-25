@@ -12,5 +12,6 @@ namespace AiursoftBase.Models
         public virtual string sex { get; set; }
         public virtual string headimgurl { get; set; }
         public virtual string preferedLanguage { get; set; }
+        public virtual DateTime accountCreateTime { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Developer.Models.AppsViewModels.AppLayoutModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,7 +25,7 @@
             <button type="button" class="button-close fa fa-times js__menu_close"></button>
             <div class="user">
                 <a href="#" class="avatar"><img src="/images/avatar-sm-5.jpg" alt=""><span class="status online"></span></a>
-                <h5 class="name"><a href="profile.html">Denise Emily</a></h5>
+                <h5 class="name"><a href="profile.html">@Model.UserName</a></h5>
                 <h5 class="position">Administrator</h5>
                 <div class="control-wrap js__drop_down">
                     <i class="fa fa-caret-down js__drop_down_button"></i>
@@ -40,8 +41,11 @@
             <div class="navigation">
                 <h5 class="title">Navigation</h5>
                 <ul class="menu js__accordion">
-                    <li class="current">
-                        <a class="waves-effect" href="index.html"><i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
+                    <li class="@(Model.ActivePanel == 0 ? "current":"")">
+                        <a class="waves-effect" asp-controller="Apps" asp-action="Index"><i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="@(Model.ActivePanel == 1 ? "current":"")">
+                        <a class="waves-effect" asp-controller="Apps" asp-action="AllApps"><i class="menu-icon mdi mdi-apps"></i><span>Apps</span></a>
                     </li>
                     <li>
                         <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-desktop-mac"></i><span>User Interface</span><span class="menu-arrow fa fa-angle-down"></span></a>
@@ -332,7 +336,7 @@
         </div>
     </div>
     <div id="wrapper">
-       @RenderBody()
+        @RenderBody()
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/modernizr.js"></script>
