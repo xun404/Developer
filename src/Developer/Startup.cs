@@ -40,13 +40,10 @@ namespace Developer
         {
             services.AddDbContext<DeveloperDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AiursoftDeveloperDbConnection")));
-
             services.AddIdentity<DeveloperUser, IdentityRole>()
                 .AddEntityFrameworkStores<DeveloperDbContext>()
                 .AddDefaultTokenProviders();
-
             services.AddMvc();
-
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
@@ -69,12 +66,7 @@ namespace Developer
             app.UseStaticFiles();
             app.UseIdentity();
             app.UseAiursoftAuthentication(appId: "appid", appSecret: "appSecret");
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 

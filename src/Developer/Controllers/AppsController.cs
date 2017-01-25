@@ -40,7 +40,7 @@ namespace API.Controllers
         {
             ViewData["Title"] = "Home";
             var _cuser = await GetCurrentUserAsync();
-            var _model = new IndexViewModel(_cuser.nickname);
+            var _model = new IndexViewModel(_cuser);
             return View(_model);
         }
         [AiurForceAuth]
@@ -48,7 +48,7 @@ namespace API.Controllers
         {
             ViewData["Title"] = "All Apps";
             var _cuser = await GetCurrentUserAsync();
-            var _model = new AllAppsViewModel(_cuser.nickname);
+            var _model = new AllAppsViewModel(_cuser);
             return View(_model);
         }
 

@@ -8,7 +8,7 @@ namespace Developer.Models.AppsViewModels
 {
     public class AllAppsViewModel : AppLayoutModel
     {
-        public AllAppsViewModel(string UserName) : base(UserName, 1)
+        public AllAppsViewModel(DeveloperUser User) : base(User, 1)
         {
         }
     }

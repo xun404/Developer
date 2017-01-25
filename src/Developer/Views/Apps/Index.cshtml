@@ -5,174 +5,125 @@
 <div class="main-content">
     <div class="row small-spacing">
         <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="box-content bordered primary margin-bottom-20">
-                        <div class="profile-avatar">
-                            <img class="img-thumbnail" style="width:100%" src="~/images/avatar-5.jpg" alt="">
-                            <a href="#" class="btn btn-block btn-friend"><i class="fa fa-check-circle"></i>Pop up</a>
-                            <a href="#" class="btn btn-block btn-inbox"><i class="fa fa-envelope"></i>Withdraw</a>
-                            <h3><strong>@Model.UserName</strong></h3>
-                            <h4>Owner at Our Company, Inc.</h4>
+            <div class="box-content bordered primary margin-bottom-20">
+                <div class="col-md-5 col-sm-5">
+                    <div class="profile-avatar">
+                        <div style="min-height:160px;">
+                            <img class="img-thumbnail" style="width:100%" src="@Model.UserIconImageAddress">
                         </div>
-                        <table class="table table-hover no-margin">
-                            <tbody>
-                                <tr>
-                                    <td>Status</td>
-                                    <td><span class="notice notice-danger">Active</span></td>
-                                </tr>
-                                <tr>
-                                    <td>User Rating</td>
-                                    <td><i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Member Since</td>
-                                    <td>Jan 07, 2014</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <a href="#" class="btn btn-block btn-friend"><i class="fa fa-check-circle"></i>Pop up</a>
+                        <a href="#" class="btn btn-block btn-inbox"><i class="fa fa-envelope"></i>Withdraw</a>
+                        <h3><strong>@Html.DisplayFor(t=>t.UserName)</strong></h3>
+                        <h4>Owner at Our Company, Inc.</h4>
                     </div>
+                    <table class="table table-hover no-margin">
+                        <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td><span class="notice notice-danger">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>User Rating</td>
+                                <td><i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Member Since</td>
+                                <td>Jan 07, 2014</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-6">
-                    <div class="box-content">
-                        <h4 class="box-title">Activity</h4>
-                        <!-- /.box-title -->
-                        <div class="dropdown js__drop_down">
-                            <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else there</a></li>
-                                <li class="split"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                            <!-- /.sub-menu -->
-                        </div>
-                        <!-- /.dropdown js__dropdown -->
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="bar bg-primary">
-                                    <div class="dot bg-primary"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">10 min</div>
-                                    <!-- /.date -->
-                                    <div class="text">
-                                        Harry has finished "Amaza HTML" task
-                                    </div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-danger">
-                                    <div class="dot bg-danger"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">15 min</div>
-                                    <!-- /.date -->
-                                    <div class="text">
-                                        You completed your task
-                                    </div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-success">
-                                    <div class="dot bg-success"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">30 min</div>
-                                    <!-- /.date -->
-                                    <div class="text">
-                                        New updated has been installed
-                                    </div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-violet">
-                                    <div class="dot bg-violet"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">1 hour ago</div>
-                                    <!-- /.date -->
-                                    <div class="text">Write some comments</div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-warning">
-                                    <div class="dot bg-warning"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">1 day ago</div>
-                                    <!-- /.date -->
-                                    <div class="text">4 friends request accepted</div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-orange">
-                                    <div class="dot bg-orange"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">6 days ago</div>
-                                    <!-- /.date -->
-                                    <div class="text">Betty has joined your team</div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                            <div class="activity-item">
-                                <div class="bar bg-orange">
-                                    <div class="dot bg-orange"></div>
-                                    <div class="last-dot bg-orange"></div>
-                                    <!-- /.dot -->
-                                </div>
-                                <!-- /.bar -->
-                                <div class="content">
-                                    <div class="date">12 days ago</div>
-                                    <!-- /.date -->
-                                    <div class="text">Daisy has joined your team</div>
-                                    <!-- /.text -->
-                                </div>
-                                <!-- /.content -->
-                            </div>
-                            <!-- /.activity-item -->
-                        </div>
-                        <!-- /.activity-list -->
-                        <a href="#" class="activity-link">View all activity <i class="fa fa-angle-down"></i></a>
+                <div class="col-md-7 col-sm-7">
+                    <h4 class="box-title">Activity</h4>
+                    <div class="dropdown js__drop_down">
+                        <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else there</a></li>
+                            <li class="split"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
                     </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="bar bg-primary">
+                                <div class="dot bg-primary"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">10 min</div>
+                                <div class="text">
+                                    Harry has finished "Amaza HTML" task
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-danger">
+                                <div class="dot bg-danger"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">15 min</div>
+                                <div class="text">
+                                    You completed your task
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-success">
+                                <div class="dot bg-success"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">30 min</div>
+                                <div class="text">
+                                    New updated has been installed
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-lightdark">
+                                <div class="dot bg-violet"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">1 hour ago</div>
+                                <div class="text">Write some comments</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-warning">
+                                <div class="dot bg-warning"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">1 day ago</div>
+                                <div class="text">4 friends request accepted</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-orange">
+                                <div class="dot bg-orange"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">6 days ago</div>
+                                <div class="text">Betty has joined your team</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="bar bg-orange">
+                                <div class="dot bg-orange"></div>
+                                <div class="last-dot bg-orange"></div>
+                            </div>
+                            <div class="content">
+                                <div class="date">12 days ago</div>
+                                <div class="text">Daisy has joined your team</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="activity-link">View all activity <i class="fa fa-angle-down"></i></a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="box-content">
+            <div class="box-content bordered warning">
                 <h4 class="box-title">Last Reviews</h4>
-                <!-- /.box-title -->
                 <div class="dropdown js__drop_down">
                     <a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
                     <ul class="sub-menu">
@@ -184,7 +135,6 @@
                     </ul>
                     <!-- /.sub-menu -->
                 </div>
-                <!-- /.dropdown js__dropdown -->
                 <div class="review-list">
                     <div class="review-item">
                         <div class="top">
@@ -287,7 +237,6 @@
                     </div>
                     <!-- /.review-item -->
                 </div>
-                <!-- /.review-list -->
             </div>
         </div>
     </div>

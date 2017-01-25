@@ -7,12 +7,14 @@ namespace Developer.Models.AppsViewModels
 {
     public class AppLayoutModel
     {
-        public AppLayoutModel(string UserName,int ActivePanel)
+        public AppLayoutModel(DeveloperUser User,int ActivePanel)
         {
-            this.UserName = UserName;
+            this.UserName = User.nickname;
+            this.UserIconImageAddress = User.headimgurl;
             this.ActivePanel = ActivePanel;
         }
         public string UserName { get; set; }
+        public string UserIconImageAddress { get; set; }
         public int ActivePanel { get; set; }
     }
 }

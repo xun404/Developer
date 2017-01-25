@@ -7,7 +7,7 @@ namespace Developer.Models.AppsViewModels
 {
     public class IndexViewModel : AppLayoutModel
     {
-        public IndexViewModel(string UserName) : base(UserName, 0)
+        public IndexViewModel(DeveloperUser User) : base(User, 0)
         {
         }
     }
