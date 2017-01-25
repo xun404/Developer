@@ -16,12 +16,12 @@ namespace API.Controllers
 {
     public class AppsController : Controller
     {
-        public UserManager<DeveloperUser> _userManager { get; protected set; }
-        public SignInManager<DeveloperUser> _signInManager { get; protected set; }
-        public IEmailSender _emailSender { get; protected set; }
-        public ISmsSender _smsSender { get; protected set; }
-        public ILogger _logger { get; protected set; }
-        public DeveloperDbContext _dbContext { get; protected set; }
+        private readonly UserManager<DeveloperUser> _userManager;
+        private readonly SignInManager<DeveloperUser> _signInManager;
+        private readonly IEmailSender _emailSender;
+        private readonly ISmsSender _smsSender;
+        private readonly ILogger _logger;
+        private readonly DeveloperDbContext _dbContext;
 
         public AppsController(
             UserManager<DeveloperUser> userManager,
@@ -38,7 +38,7 @@ namespace API.Controllers
             _logger = loggerFactory.CreateLogger<AppsController>();
             _dbContext = _context;
         }
-        
+
         public IActionResult Index()
         {
             ViewData["Title"] = "Home";

@@ -25,26 +25,17 @@ namespace Developer.Controllers
     [AiurForceAuthException]
     public class AuthController : Controller
     {
-        public UserManager<DeveloperUser> _userManager { get; protected set; }
-        public SignInManager<DeveloperUser> _signInManager { get; protected set; }
-        public IEmailSender _emailSender { get; protected set; }
-        public ISmsSender _smsSender { get; protected set; }
-        public ILogger _logger { get; protected set; }
-        public DeveloperDbContext _dbContext { get; protected set; }
+        public readonly UserManager<DeveloperUser> _userManager;
+        public readonly SignInManager<DeveloperUser> _signInManager;
+        public readonly DeveloperDbContext _dbContext;
 
         public AuthController(
             UserManager<DeveloperUser> userManager,
             SignInManager<DeveloperUser> signInManager,
-            IEmailSender emailSender,
-            ISmsSender smsSender,
-            ILoggerFactory loggerFactory,
             DeveloperDbContext _context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
-            _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<AuthController>();
             _dbContext = _context;
         }
 

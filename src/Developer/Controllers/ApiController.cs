@@ -15,12 +15,12 @@ namespace API.Controllers
 {
     public class ApiController : Controller
     {
-        public UserManager<DeveloperUser> _userManager { get; protected set; }
-        public SignInManager<DeveloperUser> _signInManager { get; protected set; }
-        public IEmailSender _emailSender { get; protected set; }
-        public ISmsSender _smsSender { get; protected set; }
-        public ILogger _logger { get; protected set; }
-        public DeveloperDbContext _dbContext { get; protected set; }
+        public readonly UserManager<DeveloperUser> _userManager;
+        public readonly SignInManager<DeveloperUser> _signInManager;
+        public readonly IEmailSender _emailSender;
+        public readonly ISmsSender _smsSender;
+        public readonly ILogger _logger;
+        public readonly DeveloperDbContext _dbContext;
 
         public ApiController(
             UserManager<DeveloperUser> userManager,

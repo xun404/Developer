@@ -54,16 +54,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll logo no-margin" href="#page-top">Aiursoft Developer Center</a>
+                <a class="navbar-brand page-scroll logo no-margin" href="#page-top">Aiursoft Dev Center</a>
             </div>
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <div class="collapse navbar-collapse navbar-ex1-collapse" style="max-height:600px">
                 <ul class="nav navbar-nav navbar-left">
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="About">Products</a></li>
+                    <li><a asp-controller="Home" asp-action="Products">Products</a></li>
                     <li><a asp-controller="Home" asp-action="Docs">Docs</a></li>
-                    <li><a asp-controller="Home" asp-action="About">Tools &amp; Support</a></li>
-                    <li><a asp-controller="Home" asp-action="Contact">News</a></li>
-                    <li><a asp-controller="Home" asp-action="Contact">Success Stories</a></li>
+                    <li><a asp-controller="Home" asp-action="ToolsSupport">Tools &amp; Support</a></li>
+                    <li><a asp-controller="Home" asp-action="News">News</a></li>
+                    <li><a asp-controller="Home" asp-action="Stories">Success Stories</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @await Html.PartialAsync("_LoginPartial")

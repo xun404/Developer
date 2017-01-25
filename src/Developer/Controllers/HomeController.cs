@@ -15,27 +15,15 @@ namespace Developer.Controllers
     [AiurForceAuthException]
     public class HomeController : Controller
     {
-        public UserManager<DeveloperUser> _userManager { get; protected set; }
-        public SignInManager<DeveloperUser> _signInManager { get; protected set; }
-        public IEmailSender _emailSender { get; protected set; }
-        public ISmsSender _smsSender { get; protected set; }
-        public ILogger _logger { get; protected set; }
-        public DeveloperDbContext _dbContext { get; protected set; }
+        public readonly SignInManager<DeveloperUser> _signInManager;
+        public readonly ILogger _logger;
 
         public HomeController(
-            UserManager<DeveloperUser> userManager,
             SignInManager<DeveloperUser> signInManager,
-            IEmailSender emailSender,
-            ISmsSender smsSender,
-            ILoggerFactory loggerFactory,
-            DeveloperDbContext _context)
+            ILoggerFactory loggerFactory)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
-            _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<HomeController>();
-            _dbContext = _context;
         }
 
         public IActionResult Index()
