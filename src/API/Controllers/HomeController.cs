@@ -42,8 +42,8 @@ namespace API.Controllers
                 Signedin = User.Identity.IsAuthenticated,
                 UserId = cuser?.Id,
                 ServerTime = DateTime.Now,
-                UserName = cuser.nickname,
-                UserImage = cuser.headimgurl
+                UserName = cuser?.nickname,
+                UserImage = cuser?.headimgurl
             });
         }
         private async Task<APIUser> GetCurrentUserAsync()

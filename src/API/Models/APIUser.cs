@@ -15,13 +15,14 @@ namespace API.Models
         [InverseProperty(nameof(OAuthPack.User))]
         public virtual List<OAuthPack> Packs { get; set; }
 
-        public async virtual Task<OAuthPack> GeneratePack(APIDbContext DbContext)
+        public async virtual Task<OAuthPack> GeneratePack(APIDbContext DbContext,string AppId)
         {
             var pack = new OAuthPack
             {
                 AccessTokens = new List<AccessToken>(),
                 Code = (Id + DateTime.Now.ToString()).GetHashCode(),
-                UserId = this.Id
+                UserId = this.Id,
+                ApplyAppId = AppId
             };
             DbContext.OAuthPack.Add(pack);
             await DbContext.SaveChangesAsync();

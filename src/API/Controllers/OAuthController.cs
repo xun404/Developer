@@ -45,7 +45,7 @@ namespace API.Controllers
             var cuser = await GetCurrentUserAsync();
             if (cuser != null)
             {
-                var pack = await cuser.GeneratePack(_dbContext);
+                var pack = await cuser.GeneratePack(_dbContext, model.appid);
                 var url = AddCode(model.redirect_uri, pack.Code, model.state);
                 return Redirect(url);
             }
@@ -71,7 +71,7 @@ namespace API.Controllers
                 if (result.Succeeded)
                 {
                     var cuser = await GetCurrentUserAsync(model.Email);
-                    var pack = await cuser.GeneratePack(_dbContext);
+                    var pack = await cuser.GeneratePack(_dbContext, model.AppId);
                     var url = AddCode(model.ToRedirect, pack.Code, model.State);
                     return Redirect(url);
                 }
@@ -118,7 +118,7 @@ namespace API.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: true);
                     var cuser = await GetCurrentUserAsync(model.Email);
-                    var pack = await cuser.GeneratePack(_dbContext);
+                    var pack = await cuser.GeneratePack(_dbContext, model.AppId);
                     var url = AddCode(model.ToRedirect, pack.Code, model.State);
                     return Redirect(url);
                 }
@@ -144,6 +144,10 @@ namespace API.Controllers
             if (_targetPack == null)
             {
                 return Json(new { message = "Invalid Code.", Code = -2 });
+            }
+            if(_targetPack.ApplyAppId != model.AppId)
+            {
+                return Json(new { message = "The app granted code is not the app granting access token!", Code = -3 });
             }
             var _newAccessToken = new AccessToken
             {
