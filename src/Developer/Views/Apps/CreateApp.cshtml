@@ -1,0 +1,131 @@
+﻿@model Developer.Models.AppsViewModels.CreateAppViewModel
+@{
+    Layout = "_AppLayout";
+}
+
+<div class="main-content">
+    <div class="row row-inline-block small-spacing">
+        <div class="col-xs-12">
+            <div class="box-content">
+                <form asp-controller="Apps" asp-action="CreateApp" method="post" class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="form-group">
+                            <label asp-for="AppName"></label>
+                            <input asp-for="AppName" type="text" class="form-control" placeholder="Enter your app name...">
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label asp-for="AppDescription"></label>
+                            <textarea class="form-control" asp-for="AppDescription" rows="3" placeholder="Enter a short description about your app..."></textarea>
+                            <div id="toastTypeGroup">
+                                <label asp-for="AppPlatform"></label>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="0" id="x0" checked="checked">
+                                    <label for="radio-1">Cross Platform</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="1" id="x1">
+                                    <label for="x1">Android</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="2" id="x2">
+                                    <label for="x2">iOS</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="3" id="x3">
+                                    <label for="x3">Windows Desktop</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="4" id="x4">
+                                    <label for="x4">Windows UWP</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="5" id="x5">
+                                    <label for="x5">Linux</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="6" id="x6">
+                                    <label for="x6">Mac OS</label>
+                                </div>
+                                <div class="radio success">
+                                    <input type="radio" asp-for="AppPlatform" value="7" id="x7">
+                                    <label for="x7">Web \ HTML</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-md-4 -->
+                    <div class="col-md-8 col-xs-12">
+                        <div id="positionGroup">
+                            <div class="form-group">
+                                <label>Position</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r0" value="0" checked="checked">
+                                <label for="r0">Development</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r1" value="1">
+                                <label for="r1">AppForAiur</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r2" value="2">
+                                <label for="r2">AppForPages</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r3" value="3">
+                                <label for="r3">Books</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r4" value="4">
+                                <label for="r4">Business</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r5" value="5">
+                                <label for="r5">Communication</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r6" value="6">
+                                <label for="r6">Education</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r7" value="7">
+                                <label for="r7">Entertainment</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r8" value="8">
+                                <label for="r8">Fashion</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r9" value="9">
+                                <label for="r9">Finance</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r10" value="10">
+                                <label for="r10">FoodAndDrink</label>
+                            </div>
+                            <div class="radio info">
+                                <input type="radio" asp-for="AppCategory" id="r11" value="11">
+                                <label for="r11">Games</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 margin-top-30">
+                        <button type="submit" class="btn btn-primary btn-sm">Create</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="cleartoasts">Clear Toasts</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="clearlasttoast">Clear Last Toast</button>
+                        <pre id="toastrOptions" class="margin-top-20"></pre>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <ul class="list-inline">
+            <li>2016 © NinjaAdmin.</li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+    </footer>
+</div>

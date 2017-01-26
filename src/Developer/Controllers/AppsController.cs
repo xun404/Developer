@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Developer.Models.AppsViewModels;
 using AiursoftBase.Attributes;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -48,8 +49,32 @@ namespace API.Controllers
         {
             ViewData["Title"] = "All Apps";
             var _cuser = await GetCurrentUserAsync();
-            var _model = new AllAppsViewModel(_cuser);
+            var _model = new AllAppsViewModel(_cuser)
+            {
+                MyApps = _dbContext.Apps.Where(t => t.CreaterId == _cuser.Id)
+            };
             return View(_model);
+        }
+
+        [AiurForceAuth]
+        public async Task<IActionResult> CreateApp()
+        {
+            var _cuser = await GetCurrentUserAsync();
+            var _model = new CreateAppViewModel(_cuser);
+            return View(_model);
+        }
+        [AiurForceAuth]
+        [HttpPost]
+        public async Task<IActionResult> CreateApp(CreateAppViewModel model)
+        {
+            var _cuser = await GetCurrentUserAsync();
+            var _newApp = new App(_cuser.Id, model.AppName, model.AppDescription, model.AppCategory, model.AppPlatform)
+            {
+                CreaterId = _cuser.Id
+            };
+            _dbContext.Apps.Add(_newApp);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(AllApps));
         }
 
         private async Task<DeveloperUser> GetCurrentUserAsync()

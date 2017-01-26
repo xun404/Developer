@@ -11,5 +11,6 @@ namespace Developer.Models.AppsViewModels
         public AllAppsViewModel(DeveloperUser User) : base(User, 1)
         {
         }
+        public virtual IEnumerable<App> MyApps { get; set; }
     }
 }

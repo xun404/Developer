@@ -7,6 +7,7 @@ namespace Developer.Models.AppsViewModels
 {
     public class AppLayoutModel
     {
+        public AppLayoutModel() { }
         public AppLayoutModel(DeveloperUser User,int ActivePanel)
         {
             this.UserName = User.nickname;
