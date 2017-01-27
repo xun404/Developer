@@ -82,7 +82,9 @@ namespace API.Controllers
         public async Task<IActionResult> ViewApp(string id)
         {
             var _app = await _dbContext.Apps.SingleOrDefaultAsync(t=>t.AppId == id);
-            return View();
+            var _cuser = await GetCurrentUserAsync();
+            var _model = new ViewAppViewModel(_cuser);
+            return View(_model);
         }
 
         private async Task<DeveloperUser> GetCurrentUserAsync()
