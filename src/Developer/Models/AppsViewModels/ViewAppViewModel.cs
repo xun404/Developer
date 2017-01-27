@@ -11,8 +11,12 @@ namespace Developer.Models.AppsViewModels
     {
         [Obsolete(message: "This method is only for framework", error: true)]
         public ViewAppViewModel() { }
-        public ViewAppViewModel(DeveloperUser User) : base(User, 1)
+        public ViewAppViewModel(DeveloperUser User,App ThisApp) : base(User, 1)
         {
+            this.AppName = ThisApp.AppName;
+            this.AppDescription = ThisApp.AppDescription;
+            this.AppCategory = ThisApp.AppCategory;
+            this.AppPlatform = ThisApp.AppPlatform;
         }
         [Display(Name = "App Name")]
         public virtual string AppName { get; set; }

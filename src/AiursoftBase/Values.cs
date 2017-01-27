@@ -9,9 +9,10 @@ namespace AiursoftBase
 {
     public static class Values
     {
-        public static string ServerAddress { get; private set; } = "http://api.aiursoft.obisoft.com.cn";
-        public static string AppId { get; private set; } = "appid";
-        public static string AppSecret { get; private set; } = "appsecret";
+        public static string DeveloperServerAddress { get; private set; } = "http://developer.aiursoft.obisoft.com.cn";
+        public static string ApiServerAddress { get; private set; } = "http://api.aiursoft.obisoft.com.cn";
+        public static string DeveloperSiteAppId { get; private set; } = string.Empty;
+        public static string DeveloperSiteAppSecret { get; private set; } = string.Empty;
         public static IApplicationBuilder UseAiursoftAuthentication(this IApplicationBuilder app, string appId, string appSecret, string ServerAddress = "")
         {
             if (string.IsNullOrWhiteSpace(appId))
@@ -24,10 +25,10 @@ namespace AiursoftBase
             }
             if (!string.IsNullOrWhiteSpace(ServerAddress))
             {
-                Values.ServerAddress = ServerAddress;
+                ApiServerAddress = ServerAddress;
             }
-            AppId = appId;
-            AppSecret = appSecret;
+            DeveloperSiteAppId = appId;
+            DeveloperSiteAppSecret = appSecret;
             return app;
         }
     }

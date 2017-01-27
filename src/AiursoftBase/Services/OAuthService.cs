@@ -13,9 +13,10 @@ namespace AiursoftBase.Services
         public async static Task<AuthAccessToken> AuthCodeToAccessTokenAsync(string code)
         {
             var HTTPContainer = new HTTPService();
-            var URL = $@"{Values.ServerAddress}/oauth/access_token?appid={
-                Values.AppId}&secret={
-                Values.AppSecret}&code={code}&grant_type=authorization_code";
+            var URL = $@"{Values.ApiServerAddress}/oauth/access_token?{
+                nameof(Values.DeveloperSiteAppId)}       =   {WebUtility.UrlEncode(Values.DeveloperSiteAppId)}&{
+                nameof(Values.DeveloperSiteAppSecret)}   =   {WebUtility.UrlEncode(Values.DeveloperSiteAppSecret)}&{
+                nameof(code)}               =   {WebUtility.UrlEncode(code)}&grant_type=authorization_code";
             var result = await HTTPContainer.Get(URL);
             var JResult = JsonConvert.DeserializeObject<AuthAccessToken>(result);
             return JResult;
@@ -23,8 +24,8 @@ namespace AiursoftBase.Services
         public async static Task<UserInfoViewModel> AccessTokenToUserInfo(string AccessToken, string openid)
         {
             var HTTPContainer = new HTTPService();
-            var URL = $@"{Values.ServerAddress}/oauth/UserInfo?access_token={
-                AccessToken}&openid={
+            var URL = $@"{Values.ApiServerAddress}/oauth/UserInfo?access_token={
+                WebUtility.UrlEncode(AccessToken)}&{nameof(openid)}={
                 openid}&lang=en-US";
 
             var result = await HTTPContainer.Get(URL);
@@ -33,11 +34,22 @@ namespace AiursoftBase.Services
         }
         public static string GenerateAuthUrl(string Destination, string State = "null")
         {
-            string result = Values.ServerAddress + $@"/oauth/authorize?appid={
-             Values.AppId}&redirect_uri={
+            string result = Values.ApiServerAddress + $@"/oauth/authorize?appid={
+             Values.DeveloperSiteAppId}&redirect_uri={
              WebUtility.UrlEncode(Destination)}&response_type=code&scope=snsapi_base&state={
              WebUtility.UrlEncode(State)}#aiursoft_redirect";
             return result;
         }
+        public async static Task<AiurProtocal> CorrectAppAsync(string AppId, string AppSecret)
+        {
+            var HTTPContainer = new HTTPService();
+            var URL = $@"{Values.DeveloperServerAddress}/api/IsValidateApp?AppId={
+                WebUtility.UrlEncode(AppId)}&AppSecret={
+                WebUtility.UrlEncode(AppSecret)}";
+            var result = await HTTPContainer.Get(URL);
+            var JResult = JsonConvert.DeserializeObject<AiurProtocal>(result);
+            return JResult;
+        }
+
     }
 }

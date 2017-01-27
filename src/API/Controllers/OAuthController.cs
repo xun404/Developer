@@ -136,18 +136,19 @@ namespace API.Controllers
 
         public async Task<IActionResult> Access_token(Access_tokenAddressModel model)
         {
-            if (!AppService.CorrectApp(model.AppId, model.AppSecret))
+            var AppState = await OAuthService.CorrectAppAsync(model.AppId, model.AppSecret);
+            if (AppState.code != 0)
             {
-                return Json(new { message = "Invalid App.", Code = -1 });
+                return Json(AppState);
             }
             var _targetPack = await _dbContext.OAuthPack.SingleOrDefaultAsync(t => t.Code == model.Code);
             if (_targetPack == null)
             {
-                return Json(new { message = "Invalid Code.", Code = -2 });
+                return Json(new AiurProtocal { message = "Invalid Code.", code = -2 });
             }
-            if(_targetPack.ApplyAppId != model.AppId)
+            if (_targetPack.ApplyAppId != model.AppId)
             {
-                return Json(new { message = "The app granted code is not the app granting access token!", Code = -3 });
+                return Json(new AiurProtocal { message = "The app granted code is not the app granting access token!", code = -3 });
             }
             var _newAccessToken = new AccessToken
             {
@@ -178,11 +179,11 @@ namespace API.Controllers
 
             if (Target == null)
             {
-                return Json(new { message = "Invalid Access Token!", code = -1 });
+                return Json(new AiurProtocal { message = "Invalid Access Token!", code = -1 });
             }
             if (Target.OAuthPack.UserId != model.openid)
             {
-                return Json(new { message = "Invalid Open Id!", code = -2 });
+                return Json(new AiurProtocal { message = "Invalid Open Id!", code = -2 });
             }
             var _user = await _userManager.FindByIdAsync(model.openid);
             var _viewModel = new UserInfoViewModel

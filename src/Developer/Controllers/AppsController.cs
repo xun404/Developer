@@ -81,15 +81,19 @@ namespace API.Controllers
         [AiurForceAuth]
         public async Task<IActionResult> ViewApp(string id)
         {
-            var _app = await _dbContext.Apps.SingleOrDefaultAsync(t=>t.AppId == id);
+            var _app = await _dbContext.Apps.SingleOrDefaultAsync(t => t.AppId == id);
+            if (_app == null)
+            {
+                return NotFound();
+            }
             var _cuser = await GetCurrentUserAsync();
-            var _model = new ViewAppViewModel(_cuser);
+            var _model = new ViewAppViewModel(_cuser, _app);
             return View(_model);
         }
 
         private async Task<DeveloperUser> GetCurrentUserAsync()
         {
-            return await _dbContext.Users.Include(t => t.MyApps).SingleOrDefaultAsync(t=>t.UserName == User.Identity.Name);
+            return await _dbContext.Users.Include(t => t.MyApps).SingleOrDefaultAsync(t => t.UserName == User.Identity.Name);
         }
     }
 }

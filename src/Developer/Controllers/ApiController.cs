@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Developer.Data;
 using Microsoft.EntityFrameworkCore;
 using Developer.Models.AppsViewModels;
+using AiursoftBase.Models;
 
 namespace API.Controllers
 {
@@ -39,18 +40,18 @@ namespace API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new { message = "Wrong input.", code = -10 });
+                return Json(new AiurProtocal { message = "Wrong input.", code = -10 });
             }
             var _target = await _dbContext.Apps.SingleOrDefaultAsync(t => t.AppId == model.AppId);
             if (_target == null)
             {
-                return Json(new { message = "Not found.", code = -4 });
+                return Json(new AiurProtocal { message = "Not found.", code = -4 });
             }
             if (_target.AppSecret != model.AppSecret)
             {
-                return Json(new { message = "Wrong secret.", code = -1 });
+                return Json(new AiurProtocal { message = "Wrong secret.", code = -1 });
             }
-            return Json(new { message = "Currect", code = 0 });
+            return Json(new AiurProtocal { message = "Currect", code = 0 });
         }
     }
 }

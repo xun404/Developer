@@ -65,7 +65,7 @@ namespace Developer
             }
             app.UseStaticFiles();
             app.UseIdentity();
-            app.UseAiursoftAuthentication(appId: "appid", appSecret: "appSecret");
+            app.UseAiursoftAuthentication(appId: "29bf5250a6d93d47b6164ac2821d5009", appSecret: "784400c3d9066c5584489497273f867e");
             app.UseMvcWithDefaultRoute();
         }
     }
