@@ -35,9 +35,9 @@ namespace Developer.Controllers
         public async Task<IActionResult> AuthResult()
         {
             var _controller = this;
-            var code = _controller.HttpContext.Request.Query["code"];
+            var code = int.Parse(_controller.HttpContext.Request.Query["code"]);
             var state = _controller.HttpContext.Request.Query["state"];
-            if (!_controller.User.Identity.IsAuthenticated && !string.IsNullOrEmpty(code))
+            if (!_controller.User.Identity.IsAuthenticated && code > 0)
             {
                 var _accessToken = await OAuthService.AuthCodeToAccessTokenAsync(code);
                 var _userinfo = await OAuthService.AccessTokenToUserInfo(AccessToken: _accessToken.access_token, openid: _accessToken.openid);
