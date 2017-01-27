@@ -8,6 +8,7 @@ using Developer.Models.AppsViewModels;
 using AiursoftBase.Attributes;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -77,9 +78,16 @@ namespace API.Controllers
             return RedirectToAction(nameof(AllApps));
         }
 
+        [AiurForceAuth]
+        public async Task<IActionResult> ViewApp(string id)
+        {
+            var _app = await _dbContext.Apps.SingleOrDefaultAsync(t=>t.AppId == id);
+            return View();
+        }
+
         private async Task<DeveloperUser> GetCurrentUserAsync()
         {
-            return await _userManager.GetUserAsync(HttpContext.User);
+            return await _dbContext.Users.Include(t => t.MyApps).SingleOrDefaultAsync(t=>t.UserName == User.Identity.Name);
         }
     }
 }

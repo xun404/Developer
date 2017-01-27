@@ -25,12 +25,12 @@ namespace AiursoftBase.Attributes
 
                     var authpath = $"{request.Scheme}://{request.Host}/Auth/AuthResult";
                     var url = OAuthService.GenerateAuthUrl(Destination: authpath, State: exp.SignInRedirectPath);
+                    context.ExceptionHandled = true;
                     _controller.HttpContext.Response.Redirect(url);
                     break;
                 default:
                     break;
             }
-            context.ExceptionHandled = true;
         }
     }
 }

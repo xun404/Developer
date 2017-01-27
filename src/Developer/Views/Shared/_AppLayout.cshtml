@@ -46,7 +46,7 @@
                         <a class="waves-effect" asp-controller="Apps" asp-action="Index"><i class="menu-icon mdi mdi-view-dashboard"></i><span>Dashboard</span></a>
                     </li>
                     <li class="@(Model.ActivePanel == 1 ? "current":"")">
-                        <a class="waves-effect" asp-controller="Apps" asp-action="AllApps"><i class="menu-icon mdi mdi-apps"></i><span>Apps</span></a>
+                        <a class="waves-effect" asp-controller="Apps" asp-action="AllApps"><i class="menu-icon mdi mdi-apps"></i><span>Apps</span><span class="notice notice-blue">@Model.AppCount</span></a>
                     </li>
                     <li>
                         <a class="waves-effect parent-item js__control" href="#"><i class="menu-icon mdi mdi-desktop-mac"></i><span>User Interface</span><span class="menu-arrow fa fa-angle-down"></span></a>

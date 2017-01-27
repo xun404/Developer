@@ -7,6 +7,9 @@ namespace Developer.Models.AppsViewModels
 {
     public class IndexViewModel : AppLayoutModel
     {
+        [Obsolete(message: "This method is only for framework", error: true)]
+
+        public IndexViewModel() { }
         public IndexViewModel(DeveloperUser User) : base(User, 0)
         {
         }

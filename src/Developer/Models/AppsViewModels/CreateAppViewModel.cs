@@ -9,6 +9,7 @@ namespace Developer.Models.AppsViewModels
 {
     public class CreateAppViewModel : AppLayoutModel
     {
+        [Obsolete(message: "This method is only for framework", error: true)]
         public CreateAppViewModel() { }
         public CreateAppViewModel(DeveloperUser User) : base(User, 1)
         {
